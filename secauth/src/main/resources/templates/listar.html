@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+</head>
+<body>
+    <div th:switch="${artigos}">
+        <h2 th:case="null">Sem artigos por enquanto!</h2>
+            <div th:case="*">
+                <h2>Artigos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Resumo</th>
+                            <th>Publicado</th>
+                            <th>Editar</th>
+                            <th>Deletar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="artigo : ${artigos}">
+                        <td th:text="${artigo.titulo}"></td>
+                        <td th:text="${artigo.resumo}"></td>
+                        <td th:text="${artigo.publicado}"></td>
+                        <td><a th:href="@{/artigos/{id}/editar(id=${artigo.id})}">Edit</a></td>
+                        <!-- <td><a th:formaction="@{/artigos/{id}(id=${artigo.id})}" th:formmethod="delete">Delete</a></td> -->
+                        <td><a th:href="@{/artigos/{id}/deletar(id=${artigo.id})}">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+        <p><a th:href="@{/artigos/criar}">+ Adicionar artigo</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+</head>
+<body>
+    <form action="#" th:action="@{/artigos}" th:object="${artigo}" method="post">
+        <div>
+            <br>
+            
+        <label for="titulo">Título</label>
+        <input type="text" th:field="*{titulo}" id="titulo" placeholder="Título">
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+            <br>
+            <br>
+        </div>
+        <label for="resumo">Resumo</label>
+        <input type="text" th:field="*{resumo}" id="resumo" placeholder="Resumo">
+        <span th:if="${#fields.hasErrors('resumo')}" th:errors="*{resumo}"></span>
+            <br>
+            <br>
+
+        <label for="publicado">Publicado</label>
+        <input type="checkbox" th:field="*{Publicado}" id="publicado">
+        <span th:if="${#fields.hasErrors('publicado')}" th:errors="*{publicado}"></span>
+            <br>
+            <br>
+
+        <input type="submit" value="Enviar">   
+    </form>
+</div>
+</body>
+</html>
